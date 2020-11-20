@@ -6,6 +6,11 @@ import SidebarChannel from './SidebarChannel';
 import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
 import CallIcon from '@material-ui/icons/Call';
 import InfoIcon from '@material-ui/icons/Info';
+import MicIcon from '@material-ui/icons/Mic';
+import SettingsIcon from '@material-ui/icons/Settings';
+import HeadsetIcon from '@material-ui/icons/Headset';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 function Sidebar() {
     return (
@@ -42,6 +47,18 @@ function Sidebar() {
                 <div className = 'sidebar__voiceIcons'>
                     <InfoIcon />
                     <CallIcon />
+                </div>
+            </div>
+            <div className="sidebar__profile">
+                <AccountCircleIcon />
+                <div className="sidebar__profileInfo">
+                    <h3>Adeniyi085</h3>
+                    <p>#myId</p>
+                </div>
+                <div className = 'sidebar__profileIcons'>
+                     <MicIcon />
+                     <HeadsetIcon />
+                     <SettingsIcon />
                 </div>
             </div>
         </div>
