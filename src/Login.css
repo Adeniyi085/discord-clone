@@ -11,6 +11,14 @@
     font-weight: 800;
 }
 .login > button:hover {
-    background: transparent;
-    color: black;
+    background-color: black;
+    color:#738adb;
+}
+.login > div {
+    display: flex;
+    flex-direction: column;
+}
+.login > div > img {
+    object-fit: contain;
+    height: 150px;
 }
