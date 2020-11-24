@@ -26,10 +26,11 @@ function App() {
         }))
       } else {
         //user is not logged in 
-      
+        dispatch(logout())
+
       }
     })
-  }, [user])
+  }, [dispatch])
 
 
      return ( 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './Sidebar.css'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import AddIcon from '@material-ui/icons/Add';
@@ -9,10 +9,24 @@ import InfoIcon from '@material-ui/icons/Info';
 import MicIcon from '@material-ui/icons/Mic';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HeadsetIcon from '@material-ui/icons/Headset';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-
+import {Avatar} from '@material-ui/core';
+import { useSelector} from 'react-redux'
+import { selectUser} from './features/userSlice'
+import db, {auth} from './firebase';
 
 function Sidebar() {
+    const user = useSelector(selectUser)
+    const [channels, setChannels] = useState([])
+
+    useEffect(() => {
+        db.collection('channels').onSnapshot(snapshot => {
+            setChannels(snapshot.docs.map(doc =>({
+                id: doc.id,
+                channel: doc.data()
+            })))
+        })
+    }, [])
+
     return (
         <div className= 'sidebar'>
             <div className = 'sidebar__top'>
@@ -29,10 +43,11 @@ function Sidebar() {
                     <AddIcon className= 'sidebar__addChannel'/>
                 </div>
                     <div className = 'sidebar__channelsList'>
-                        <SidebarChannel  />
-                        <SidebarChannel  />
-                        <SidebarChannel  />
-                        <SidebarChannel  />
+                        {
+                            channels.map((channel) => {
+                              return   <SidebarChannel  />
+                            })
+                        }
                      </div>
             </div>
             <div className = 'sidebar__voice'>
@@ -50,10 +65,10 @@ function Sidebar() {
                 </div>
             </div>
             <div className="sidebar__profile">
-                <AccountCircleIcon />
+                <Avatar onClick = {() => auth.signOut()} src = {user.photo} />
                 <div className="sidebar__profileInfo">
                     <h3>Adeniyi085</h3>
-                    <p>#myId</p>
+                    <p>#u746wy</p>
                 </div>
                 <div className = 'sidebar__profileIcons'>
                      <MicIcon />
